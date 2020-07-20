@@ -1,0 +1,125 @@
+<html>
+    <head>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+
+            .answer {
+                border: 2px solid #fff;
+            }
+
+            .right {
+                border-color: #090;
+                color: #090;
+            }
+
+            .wrong {
+                border-color: #900;
+                color: #900;
+
+            }
+            div#title{
+
+            text-align: center;
+            font-size:30px;
+            }
+            
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+        <div id="title">Online Quiz</div>
+        </div>
+    </div>
+         <div class="container">
+            <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+        <div>
+        <label for="a1"> Q1: If you freeze water, what do you get?</label>
+        <input type="text" placeholder="Your Answer..." required="required" id="a1">
+        <span id="icon1"></span>
+        </div>
+        <br>
+        <div>
+        <label for="q2">Q2: What colors are the stars on the American flag?</label>
+        <input type="text" placeholder="Your Answer..." required="required" id="a2">
+        <span id="icon2"></span>
+        </div>
+         <br>
+        <div>
+        <label for="q3">Q3: Which ocean is off the California coast?</label>
+        <input type="text" placeholder="Your Answer..." required="required" id="a3">
+        <span id="icon3"></span>
+        </div>
+        <br>
+        <div>
+        <label for="q4">Q4: Which Disney movie is Elsa in?</label>
+        <input type="text" placeholder="Your Answer..." required="required" id="a4">
+        <span id="icon4"></span>
+        </div>
+        <br>
+
+        <div>
+        <label for="q5">Q5: What is the color of a school bus?</label>
+        <input type="text" placeholder="Your Answer..." required="required" id="a5">
+        <span id="icon5"></span>
+        </div>
+    </div>
+</div>
+       <div class="container">
+        <div class="row">
+        <p>
+            <button onClick="checkAnswers();" class="btn btn-primary">Check Answers</button>
+        </p>
+    </div>
+    <div class="row">
+        <p>
+            <button onClick="clearAnswers();" class="btn btn-secondary">Clear Answers</button>
+        </p>
+        </div>
+    </div>
+        <script>
+        
+        function getAnswer(field) {
+            console.log(field);
+            let answer = document.getElementById(field);
+            return answer.value.toLowerCase();
+        }
+
+        function checkAnswers() {
+            let answers = ["ice", "white", "pacific", "frozen", "yellow"];
+
+            for (let i = 0; i < 5; i++) {
+                let fieldId = i + 1;
+                let answer = getAnswer("a" + fieldId);
+                 console.log("ans is"+answer);
+                 console.log("answer is"+answers[i]);
+
+                gradeAnswer(fieldId, answer == answers[i]);
+
+            }
+        }
+
+        function gradeAnswer(field, isRight) {
+            let gradeClass = isRight ? "answer right" : "answer wrong";
+            let gradeIcon = isRight ? '<i class="fa fa-thumbs-up right" aria-hidden="true"></i>' : '<i class="fa fa-thumbs-down wrong" aria-hidden="true"></i>';
+            document.getElementById("a" + field).className = gradeClass;
+            document.getElementById("icon" + field).innerHTML = gradeIcon;
+        }
+
+        function clearAnswers() {
+            for (let i = 1; i < 6; i++) {
+                let field = document.getElementById("a" + i);
+                field.value = null;
+                field.className = null;
+                document.getElementById("icon" + i).innerHTML = null;
+            }
+        }
+
+
+        </script>
+
+    </body>
+</html>
